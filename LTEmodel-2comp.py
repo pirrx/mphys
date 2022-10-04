@@ -348,8 +348,8 @@ if __name__ == '__main__':
     #PLOT
     plt.figure()
     plt.plot(freqs, intensities[0], linewidth = 2)
-    plt.xticks(fontsize= 16)
-    plt.yticks(fontsize= 16)
+    plt.xticks(fontsize= 10)
+    plt.yticks(fontsize= 10)
     #plt.grid()
     plt.xlabel('Frequency / GHz', fontsize = 20)
     plt.ylabel('Intensity / K', fontsize = 20)
