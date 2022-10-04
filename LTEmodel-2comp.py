@@ -302,11 +302,11 @@ if __name__ == '__main__':
     
     for i in range(0,nrows):
         
-        N = colden
-        T = extemp
-        W = fullwidth
-        V = lsr_vel
-        S = sourcesize
+        N = colden #column density
+        T = extemp #exictation temperature
+        W = fullwidth #line emission width?
+        V = lsr_vel #local standard of rest velocity
+        S = sourcesize #angular size?
         
         #CH3CN has species ID 137 in the database (I think CO has ID 50)
         # CH3{13}CN  154
