@@ -292,7 +292,7 @@ if __name__ == '__main__':
     colden = np.array([0.5e17,1e19])
     extemp = np.array([150,350])
     fullwidth = np.array([4.5,4.5])
-    lsr_vel = np.array([0,0])
+    lsr_vel = np.array([0,1])
     sourcesize = np.array([0.3,0.05])
     isoratio = 60
 
@@ -358,7 +358,7 @@ if __name__ == '__main__':
     plt.xticks(fontsize= 10)
     plt.yticks(fontsize= 10)
     #plt.grid()
-    plt.xlabel('Frequency / GHz', fontsize = 20)
+    plt.xlabel('Frequency / MHz', fontsize = 20)
     plt.ylabel('Intensity / K', fontsize = 20)
     plt.show()
     
