@@ -292,7 +292,7 @@ if __name__ == '__main__':
     #RANDOMLY GENERATED PARAMETERS IN RANGES
 
     colden = np.array([1e15,1e19])
-    extemp = np.array([200.,350.])
+    extemp = np.array([20.,350.])
     fullwidth = np.array([5.,4.5])
     lsr_vel = np.array([0.,0.])
     sourcesize = np.array([0.7,0.05])
@@ -311,7 +311,7 @@ if __name__ == '__main__':
         
         N = colden #column density
         T = extemp #exictation temperature
-        W = fullwidth #full width at half maximum (of what)
+        W = fullwidth #full width at half maximum
         V = lsr_vel #local standard of rest velocity
         S = sourcesize #angular size?
         
@@ -327,21 +327,21 @@ if __name__ == '__main__':
         
         
         #CH3CN
-        cpt1 = Component(db, [Species(species1, ntot=N[0], tex=T[0], fwhm=W[0])],
-                               isInteracting=False,vlsr=V[0], size=S[0])
-        # cpt2 = Component(db, [Species(species1, ntot=N[1], tex=T[1], fwhm=W[1])],
+        #cpt1 = Component(db, [Species(species1, ntot=N[0], tex=T[0], fwhm=W[0])],
+        #                       isInteracting=False,vlsr=V[0], size=S[0])
+        #cpt2 = Component(db, [Species(species1, ntot=N[1], tex=T[1], fwhm=W[1])],
         #                       isInteracting=False,vlsr=V[1], size=S[1])
 
         # CH3{13}CN
-        # cpt13_1 = Component(db, [Species(species2, ntot=N[0]/isoratio, tex=T[0],
-        #                 fwhm=W[0])], isInteracting=False,vlsr=V[0], size=S[0])
+        cpt13_1 = Component(db, [Species(species2, ntot=N[0]/isoratio, tex=T[0],
+                         fwhm=W[0])], isInteracting=False,vlsr=V[0], size=S[0])
         
         # cpt13_2 = Component(db, [Species(species2, ntot=N[1]/isoratio, tex=T[1],
         #                 fwhm=W[1])],isInteracting=False,vlsr=V[1], size=S[1])
 
 
         
-        cpt_list = [cpt1]#,cpt13_1,cpt13_2]
+        cpt_list = [cpt13_1]#,cpt13_1,cpt13_2]
         
         model = ModelSpectrum(cpt_list, fmhz_min=freqmin, fmhz_max=freqmax,
                               eup_max=1000., telescope='alma_400m',
@@ -362,15 +362,15 @@ if __name__ == '__main__':
     #plt.grid()
     plt.xlabel('Frequency / MHz', fontsize = 20)
     plt.ylabel('Intensity / K', fontsize = 20)
-    plt.title('Varying source size - ' + f"{sourcesize[0] :.3g}", fontsize=20)
+    plt.title('Varying excitation temperature - ' + f"{extemp[0] :.3g}", fontsize=20)
     plt.show()
-    plt.savefig()
+#    plt.savefig()
     
     #STORE SPECTRUM
     sp_frame = {'Frequency':freqs/1e3, 'Intensity':intensities}    
     
     
-    filename = '2comp_model' + '_var_'+ 'sourcesize_' + f"{sourcesize[0] :.3g}" + '.dat'
+    filename = '2comp_model' + '_var_'+ 'extemp_' + f"{extemp[0] :.3g}" + '.dat'
     outfile = filename
     
     # colden = np.array([0.5e17,1e19])
@@ -383,13 +383,14 @@ if __name__ == '__main__':
 
     with open(outfile, 'w') as f:
         
-        f.write(f'#  Species 1: {species1} {species1_lab}'+'\n')
-        f.write(f'#  {N[0]:.3g} {T[0]:.1f} {W[0]:.1f} {V[0]:.1f} {S[0]:.1f}   '+'\n')
+#        f.write(f'#  Species 1: {species1} {species1_lab}'+'\n')
+#        f.write(f'#  {N[0]:.3g} {T[0]:.1f} {W[0]:.1f} {V[0]:.1f} {S[0]:.1f}   '+'\n')
 
         f.write(f'#  Species 2: {species2} {species2_lab}'+'\n')
-        f.write(f'#  {N[1]:.3g} {T[1]:.1f} {W[1]:.1f} {V[1]:.1f} {S[1]:.1f}   '+'\n')
+        f.write(f'#  {N[0]:.3g} {T[0]:.1f} {W[0]:.1f} {V[0]:.1f} {S[0]:.1f}   '+'\n')
+#        f.write(f'#  {N[1]:.3g} {T[1]:.1f} {W[1]:.1f} {V[1]:.1f} {S[1]:.1f}   '+'\n')
         f.write(f'# N(cm^-2) T(K) dv(km/s) vlsr(km/s) size(\") \n')
-        f.write(f'# isorato:  {isoratio:.1f} '+'\n')
+#        f.write(f'# isorato:  {isoratio:.1f} '+'\n')
         for fval,tr in zip(freqs,intensities[0]):
             f.write(f'{fval}  {tr}'+'\n')
 
