@@ -291,12 +291,12 @@ if __name__ == '__main__':
     
     #RANDOMLY GENERATED PARAMETERS IN RANGES
 
-    colden = np.array([0.5e17,1e19])
-    extemp = np.array([150,350])
-    fullwidth = np.array([5,4.5])
-    lsr_vel = np.array([0,0])
-    sourcesize = np.array([0.5,0.05])
-    isoratio = 60
+    colden = np.array([1e15,1e19])
+    extemp = np.array([200.,350.])
+    fullwidth = np.array([5.,4.5])
+    lsr_vel = np.array([0.,0.])
+    sourcesize = np.array([0.7,0.05])
+    isoratio = 60.
 
     
     inputs = {'Column density': colden, 'Excitation temperature':extemp, 'FWHM':fullwidth, 'Velocity':lsr_vel, 'Size':sourcesize}
