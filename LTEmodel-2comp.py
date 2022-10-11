@@ -309,7 +309,7 @@ if __name__ == '__main__':
         
         N = colden #column density
         T = extemp #exictation temperature
-        W = fullwidth #line emission width?
+        W = fullwidth #full width at half maximum (of what)
         V = lsr_vel #local standard of rest velocity
         S = sourcesize #angular size?
         
@@ -323,21 +323,23 @@ if __name__ == '__main__':
         species1_lab = 'CH3CN'
         species2_lab = 'CH3{13}CN'
         
+        
+        #CH3CN
         cpt1 = Component(db, [Species(species1, ntot=N[0], tex=T[0], fwhm=W[0])],
-                             isInteracting=False,vlsr=V[0], size=S[0])
-        cpt2 = Component(db, [Species(species1, ntot=N[1], tex=T[1], fwhm=W[1])],
-                             isInteracting=False,vlsr=V[1], size=S[1])
+                               isInteracting=False,vlsr=V[0], size=S[0])
+        # cpt2 = Component(db, [Species(species1, ntot=N[1], tex=T[1], fwhm=W[1])],
+        #                       isInteracting=False,vlsr=V[1], size=S[1])
 
         # CH3{13}CN
-        cpt13_1 = Component(db, [Species(species2, ntot=N[0]/isoratio, tex=T[0],
-                        fwhm=W[0])], isInteracting=False,vlsr=V[0], size=S[0])
+        # cpt13_1 = Component(db, [Species(species2, ntot=N[0]/isoratio, tex=T[0],
+        #                 fwhm=W[0])], isInteracting=False,vlsr=V[0], size=S[0])
         
-        cpt13_2 = Component(db, [Species(species2, ntot=N[1]/isoratio, tex=T[1],
-                        fwhm=W[1])],isInteracting=False,vlsr=V[1], size=S[1])
+        # cpt13_2 = Component(db, [Species(species2, ntot=N[1]/isoratio, tex=T[1],
+        #                 fwhm=W[1])],isInteracting=False,vlsr=V[1], size=S[1])
 
 
         
-        cpt_list = [cpt1,cpt2,cpt13_1,cpt13_2]
+        cpt_list = [cpt1]#,cpt13_1,cpt13_2]
         
         model = ModelSpectrum(cpt_list, fmhz_min=freqmin, fmhz_max=freqmax,
                               eup_max=1000., telescope='alma_400m',
@@ -362,8 +364,17 @@ if __name__ == '__main__':
     
     #STORE SPECTRUM
     sp_frame = {'Frequency':freqs/1e3, 'Intensity':intensities}    
-
-    outfile = '2comp_model.dat'
+    
+    
+    filename = '2comp_model.dat' + '_var_'+ 'extemp_' + str(extemp[0])
+    outfile = filename
+    
+    # colden = np.array([0.5e17,1e19])
+    # extemp = np.array([150,350])
+    # fullwidth = np.array([4.5,4.5])
+    # lsr_vel = np.array([0,0])
+    # sourcesize = np.array([0.3,0.05])
+    # isoratio = 60
 
 
     with open(outfile, 'w') as f:
