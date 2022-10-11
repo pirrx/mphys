@@ -15,6 +15,7 @@ import matplotlib.pyplot as plt
 import time
 import pickle as pkl
 import pandas as pd
+from file_path import FILEPATH
 
 
 class SimpleSpectrum:
@@ -274,9 +275,10 @@ def dilution_factor(source_size, beam_size, geometry='gaussian'):
 if __name__ == '__main__':  
     
     #GET DATABASE
-    conn = sqlite3.connect('/Users/mccssgf/cassis/database/cassis20210603.db')
+    conn = sqlite3.connect(FILEPATH)
 
     db = conn.cursor()
+
 
     # tc = 1.  # 0.16
     tc = 0.
@@ -291,9 +293,9 @@ if __name__ == '__main__':
 
     colden = np.array([0.5e17,1e19])
     extemp = np.array([150,350])
-    fullwidth = np.array([4.5,4.5])
+    fullwidth = np.array([5,4.5])
     lsr_vel = np.array([0,0])
-    sourcesize = np.array([0.3,0.05])
+    sourcesize = np.array([0.5,0.05])
     isoratio = 60
 
     
@@ -366,7 +368,7 @@ if __name__ == '__main__':
     sp_frame = {'Frequency':freqs/1e3, 'Intensity':intensities}    
     
     
-    filename = '2comp_model.dat' + '_var_'+ 'extemp_' + str(extemp[0])
+    filename = '2comp_model' + '_var_'+ 'extemp_' + str(extemp[0]) + '.dat'
     outfile = filename
     
     # colden = np.array([0.5e17,1e19])
