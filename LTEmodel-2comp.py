@@ -362,13 +362,15 @@ if __name__ == '__main__':
     #plt.grid()
     plt.xlabel('Frequency / MHz', fontsize = 20)
     plt.ylabel('Intensity / K', fontsize = 20)
+    plt.title('Varying source size - ' + f"{sourcesize[0] :.3g}", fontsize=20)
     plt.show()
+    plt.savefig()
     
     #STORE SPECTRUM
     sp_frame = {'Frequency':freqs/1e3, 'Intensity':intensities}    
     
     
-    filename = '2comp_model' + '_var_'+ 'extemp_' + str(extemp[0]) + '.dat'
+    filename = '2comp_model' + '_var_'+ 'sourcesize_' + f"{sourcesize[0] :.3g}" + '.dat'
     outfile = filename
     
     # colden = np.array([0.5e17,1e19])
