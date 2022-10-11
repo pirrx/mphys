@@ -26,8 +26,11 @@ class SimpleSpectrum:
 
 
 class ModelSpectrum:
-    def __init__(self, cpt_list, fmhz_min=115.e3, fmhz_max=116.e3, dfmhz=0.1, eup_min=0.0, eup_max=150.0, aij_min=0.0,
+    def __init__(self, cpt_list, fmhz_min=115.0e3, fmhz_max=116.0e3, dfmhz=0.1, eup_min=0.0, eup_max=150.0, aij_min=0.0,
                  telescope='alma_400m', tcmb=2.73, tc=0):
+        """
+        #accessing the components list
+        """
         self.cpt_list = cpt_list
         self.fmhz_min = fmhz_min
         self.fmhz_max = fmhz_max
@@ -195,6 +198,7 @@ class Transition:
 
 
 def frange(start, stop, step):
+    # stop at i => stop
     i = start
     while i < stop:
         yield i
@@ -252,6 +256,7 @@ def jnu(fmhz, temp: float):
 
 
 def get_beam_size(tel, freq_mhz):
+    #tel?
     tel_dic = {'iram': 30.,
                'apex': 12.,
                'jcmt': 15.,
