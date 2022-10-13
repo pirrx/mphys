@@ -16,6 +16,7 @@ import time
 import pickle as pkl
 import pandas as pd
 from file_path import FILEPATH
+from scipy import integrate
 
 
 class SimpleSpectrum:
@@ -362,16 +363,20 @@ if __name__ == '__main__':
     #plt.grid()
     plt.xlabel('Frequency / MHz', fontsize = 20)
     plt.ylabel('Intensity / K', fontsize = 20)
-    plt.title('Varying source size - ' + f"{sourcesize[0] :.3g}", fontsize=20)    
-    fig_name = 'varying source size '  + f"{sourcesize[0] :.3g}" + '.png'
+    plt.title('extemp - ' + f"{extemp[0] :.3g}, " + 'colden - ' + f"{colden[0] :.3g}", fontsize=20)    
+    fig_name = 'varying extemp '  + f"{extemp[0] :.3g}" + 'colden - ' + f"{colden[0] :.3g}"+ '.png'
     plt.savefig(fig_name)
-#    plt.savefig()
-    
+
+    area = integrate.simps(intensities[0], freqs)
+    print(area)
+
+
+
     #STORE SPECTRUM
     sp_frame = {'Frequency':freqs/1e3, 'Intensity':intensities}    
     
     
-    filename = '2comp_model' + '_var_'+ 'sourcesize_' + f"{sourcesize[0] :.3g}" + '.dat'
+    filename = '2comp_model' + '_var_'+ 'colden_' + f"{colden[0] :.3g}" + '_extemp_' + f"{extemp[0] :.3g}" + '.dat'
     outfile = filename
     
     # colden = np.array([0.5e17,1e19])
