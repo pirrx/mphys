@@ -292,11 +292,11 @@ if __name__ == '__main__':
     
     #RANDOMLY GENERATED PARAMETERS IN RANGES
 
-    colden = np.array([1e15,1e19])
-    extemp = np.array([20.,350.])
-    fullwidth = np.array([5.,4.5])
+    colden = np.array([1e19,1e15])
+    extemp = np.array([400.,200.])
+    fullwidth = np.array([5.,5.])
     lsr_vel = np.array([0.,0.])
-    sourcesize = np.array([0.7,0.05])
+    sourcesize = np.array([5.0,0.05])
     isoratio = 60.
 
     
@@ -307,6 +307,8 @@ if __name__ == '__main__':
     freqmax = 239180
     length = (freqmax - freqmin) * 10
     intensities = np.zeros(shape=(nrows,length))
+    intensities_1 = np.zeros(shape=(nrows,length))
+    intensities_2 = np.zeros(shape=(nrows,length))
     
     for i in range(0,nrows):
         
@@ -328,22 +330,25 @@ if __name__ == '__main__':
         
         
         #CH3CN
-        #cpt1 = Component(db, [Species(species1, ntot=N[0], tex=T[0], fwhm=W[0])],
-        #                       isInteracting=False,vlsr=V[0], size=S[0])
-        #cpt2 = Component(db, [Species(species1, ntot=N[1], tex=T[1], fwhm=W[1])],
-        #                       isInteracting=False,vlsr=V[1], size=S[1])
+        cpt1 = Component(db, [Species(species1, ntot=N[0], tex=T[0], fwhm=W[0])],
+                              isInteracting=False,vlsr=V[0], size=S[0])
+        cpt2 = Component(db, [Species(species1, ntot=N[1], tex=T[1], fwhm=W[1])],
+                              isInteracting=False,vlsr=V[1], size=S[1])
 
         # CH3{13}CN
-        cpt13_1 = Component(db, [Species(species2, ntot=N[0]/isoratio, tex=T[0],
-                         fwhm=W[0])], isInteracting=False,vlsr=V[0], size=S[0])
+        # cpt13_1 = Component(db, [Species(species2, ntot=N[0]/isoratio, tex=T[0],
+                         # fwhm=W[0])], isInteracting=False,vlsr=V[0], size=S[0])
         
         # cpt13_2 = Component(db, [Species(species2, ntot=N[1]/isoratio, tex=T[1],
         #                 fwhm=W[1])],isInteracting=False,vlsr=V[1], size=S[1])
 
 
         
-        cpt_list = [cpt13_1]#,cpt13_1,cpt13_2]
+        cpt_list = [cpt1, cpt2]#,cpt13_1,cpt13_2]
+        cpt_list_1 = [cpt1]
+        cpt_list_2 = [cpt2]
         
+        #both components
         model = ModelSpectrum(cpt_list, fmhz_min=freqmin, fmhz_max=freqmax,
                               eup_max=1000., telescope='alma_400m',
                               tc=tc, tcmb=tcmb)
@@ -351,33 +356,86 @@ if __name__ == '__main__':
         model.compute_model()
         intens = model.intensities
         intensities[i] = intens
+        
+        #cpt 1
+        model_1 = ModelSpectrum(cpt_list_1, fmhz_min=freqmin, fmhz_max=freqmax,
+                              eup_max=1000., telescope='alma_400m',
+                              tc=tc, tcmb=tcmb)
+        
+        model_1.compute_model()
+        intens_1 = model.intensities
+        intensities_1[i] = intens_1
+        
+        # cpt 2
+        model_2 = ModelSpectrum(cpt_list_2, fmhz_min=freqmin, fmhz_max=freqmax,
+                              eup_max=1000., telescope='alma_400m',
+                              tc=tc, tcmb=tcmb)
+        
+        model_2.compute_model()
+        intens_2 = model_2.intensities
+        intensities_2[i] = intens_2
     
     freqs = model.frequencies
     
     
-    #PLOT
+    #PLOT both components
     plt.figure()
     plt.plot(freqs, intensities[0], linewidth = 2)
     plt.xticks(fontsize= 10)
     plt.yticks(fontsize= 10)
     #plt.grid()
-    plt.xlabel('Frequency / MHz', fontsize = 20)
-    plt.ylabel('Intensity / K', fontsize = 20)
-    plt.title('extemp - ' + f"{extemp[0] :.3g}, " + 'colden - ' + f"{colden[0] :.3g}", fontsize=20)    
-    fig_name = 'varying extemp '  + f"{extemp[0] :.3g}" + 'colden - ' + f"{colden[0] :.3g}"+ '.png'
-    plt.savefig(fig_name)
+    plt.xlabel('Frequency / MHz', fontsize = 15)
+    plt.ylabel('Intensity / K', fontsize = 15)
+    plt.title('extemp 1: ' + f"{extemp[0] :.3g} K, " + 'and extemp 2: '  + f"{extemp[1] :.3g} K", fontsize=15)    
+    fig_name = 'two comps extemp '  + f"{extemp[0] :.3g}" + ' extemp '  + f"{extemp[1] :.3g}" + '.png'
+    # plt.savefig(fig_name)
+    
+    #PLOT 1st component
+    plt.figure()
+    plt.plot(freqs, intensities_1[0], linewidth = 2)
+    plt.xticks(fontsize= 10)
+    plt.yticks(fontsize= 10)
+    #plt.grid()
+    plt.xlabel('Frequency / MHz', fontsize = 15)
+    plt.ylabel('Intensity / K', fontsize = 15)
+    plt.title('extemp - ' + f"{extemp[0] :.3g}, ", fontsize=15)    
+    fig_name = 'varying extemp '  + f"{extemp[0] :.3g}" + '.png'
+    # plt.savefig(fig_name)
+    
+    #PLOT 2nd component
+    plt.figure()
+    plt.plot(freqs, intensities_2[0], linewidth = 2)
+    plt.xticks(fontsize= 10)
+    plt.yticks(fontsize= 10)
+    #plt.grid()
+    plt.xlabel('Frequency / MHz', fontsize = 15)
+    plt.ylabel('Intensity / K', fontsize = 15)
+    plt.title('extemp - ' + f"{extemp[1] :.3g}", fontsize=15)    
+    fig_name = 'varying extemp '  + f"{extemp[1] :.3g}" + '.png'
+    # plt.savefig(fig_name)
 
-    area = integrate.simps(intensities[0], freqs)
-    print(area)
 
+    # area = integrate.simps(intensities[0], freqs)
+    # print(area)
+    # print(np.max(intensities[0]))
 
 
     #STORE SPECTRUM
-    sp_frame = {'Frequency':freqs/1e3, 'Intensity':intensities}    
-    
-    
-    filename = '2comp_model' + '_var_'+ 'colden_' + f"{colden[0] :.3g}" + '_extemp_' + f"{extemp[0] :.3g}" + '.dat'
+    sp_frame = {'Frequency':freqs/1e3, 'Intensity':intensities}        
+    filename = '2comp_model' + '_two_var_'+ 'extemp_1_' + f"{extemp[0] :.3g}" + '_extemp_2_' + f"{extemp[1] :.3g}" + '.dat'
     outfile = filename
+    
+    
+    sp_frame_1 = {'Frequency':freqs/1e3, 'Intensity':intensities_1}    
+    filename_1 = '2comp_model' + '_two_var_'+ '_extemp_' + f"{extemp[0] :.3g}" + '.dat'
+    outfile_1 = filename_1
+    
+    
+    sp_frame_2 = {'Frequency':freqs/1e3, 'Intensity':intensities_2}    
+    filename_2 = '2comp_model' + '_two_var_'+ '_extemp_' + f"{extemp[1] :.3g}" + '.dat'
+    outfile_2 = filename_2
+    
+    
     
     # colden = np.array([0.5e17,1e19])
     # extemp = np.array([150,350])
@@ -399,6 +457,36 @@ if __name__ == '__main__':
 #        f.write(f'# isorato:  {isoratio:.1f} '+'\n')
         for fval,tr in zip(freqs,intensities[0]):
             f.write(f'{fval}  {tr}'+'\n')
+            
+    
+    with open(outfile_1, 'w') as f:
+        
+#        f.write(f'#  Species 1: {species1} {species1_lab}'+'\n')
+#        f.write(f'#  {N[0]:.3g} {T[0]:.1f} {W[0]:.1f} {V[0]:.1f} {S[0]:.1f}   '+'\n')
+
+        f.write(f'#  Species 2: {species2} {species2_lab}'+'\n')
+        f.write(f'#  {N[0]:.3g} {T[0]:.1f} {W[0]:.1f} {V[0]:.1f} {S[0]:.1f}   '+'\n')
+#        f.write(f'#  {N[1]:.3g} {T[1]:.1f} {W[1]:.1f} {V[1]:.1f} {S[1]:.1f}   '+'\n')
+        f.write(f'# N(cm^-2) T(K) dv(km/s) vlsr(km/s) size(\") \n')
+#        f.write(f'# isorato:  {isoratio:.1f} '+'\n')
+        for fval,tr in zip(freqs,intensities_1[0]):
+            f.write(f'{fval}  {tr}'+'\n')
+            
+    
+    with open(outfile_2, 'w') as f:
+        
+#        f.write(f'#  Species 1: {species1} {species1_lab}'+'\n')
+#        f.write(f'#  {N[0]:.3g} {T[0]:.1f} {W[0]:.1f} {V[0]:.1f} {S[0]:.1f}   '+'\n')
+
+        f.write(f'#  Species 2: {species2} {species2_lab}'+'\n')
+        f.write(f'#  {N[0]:.3g} {T[0]:.1f} {W[0]:.1f} {V[0]:.1f} {S[0]:.1f}   '+'\n')
+#        f.write(f'#  {N[1]:.3g} {T[1]:.1f} {W[1]:.1f} {V[1]:.1f} {S[1]:.1f}   '+'\n')
+        f.write(f'# N(cm^-2) T(K) dv(km/s) vlsr(km/s) size(\") \n')
+#        f.write(f'# isorato:  {isoratio:.1f} '+'\n')
+        for fval,tr in zip(freqs,intensities_2[0]):
+            f.write(f'{fval}  {tr}'+'\n')
 
 
     print(f'{outfile} written'+'\n')
+    print(f'{outfile_1} written'+'\n')
+    print(f'{outfile_2} written'+'\n')
