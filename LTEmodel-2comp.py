@@ -292,11 +292,11 @@ if __name__ == '__main__':
     
     #RANDOMLY GENERATED PARAMETERS IN RANGES
 
-    colden = np.array([1e19,1e15])
-    extemp = np.array([400.,200.])
+    colden = np.array([1e15,1e15])
+    extemp = np.array([120., 200.])
     fullwidth = np.array([5.,5.])
     lsr_vel = np.array([0.,0.])
-    sourcesize = np.array([5.0,0.05])
+    sourcesize = np.array([5.0,5.0])
     isoratio = 60.
 
     
@@ -363,7 +363,7 @@ if __name__ == '__main__':
                               tc=tc, tcmb=tcmb)
         
         model_1.compute_model()
-        intens_1 = model.intensities
+        intens_1 = model_1.intensities
         intensities_1[i] = intens_1
         
         # cpt 2
