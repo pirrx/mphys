@@ -55,14 +55,15 @@ myPythonScript = Software.getCassisPath()+"/delivery/script/examples/plot_chi2_R
 userInputs  = UserInputs(
 inputFile   = inputFile,
 outputFile  = outputFile,
+#telescope   = {apex: [0, 1], hifi: [2, 3]},
 telescope   = "alma_400m",
 tuningRange = [238.85,239.15],            #  in GHz
-#TuningBand  = 60.0,                                 # in km/s
+#tuningBand  = 60.0,                                 # in km/s
 aijMin      = 0.0,
 eup         = [0.0, 1000.0],
 kup         = ["*","*"],
-template    = "All Species",  # or "Full CDMS" or "Full JPL" or "Full VASTEL" etc...
-moltags     = [41001], #41001 - CH3CN All Species #41505 Full CDMS
+template    = "Full CDMS",  # or "Full CDMS" or "Full JPL" or "Full VASTEL" etc...
+moltags     = [41001], #41001 - CH3CN?
 tmb2ta      = False,
 isoUnique   = False,
 plotTitle   = myName,
@@ -72,7 +73,7 @@ observing_mode      = "PSw/DBSw",  #or observing_mode      = "FSw",
 
 # Enter here the lines and the corresponding ranges to be taken into
 # account in the computation. The lines are sorted by frequency.
-selectedLines  = {"1": f1},         # or selectedLines       = {"1": v1, "2": v2, "3":v3, "4":v4},  if selection on a velocity range
+selectedLines  = {"1": [f1]},         # or selectedLines       = {"1": v1, "2": v2, "3":v3, "4":v4},  if selection on a velocity range
 
 # rmsLines data (in K)
 rmsLines          = {"1": 0.200 },
@@ -128,7 +129,7 @@ print "execution time = %.3f seconds." % (timeEnd - timeStart)
 #======================================================================================#
 
 # A. Plot the best model and save the corresponding spectra and config files
-bestLineModel = userInputs.plotBestModel(moltag = 41001, overSampling=3)
+bestLineModel = userInputs.plotBestModel(moltag = 30581, overSampling=3, tuningBand = 60)
 bestLineModel.saveConfig(File(myDirOutput+myName+".lam"))
 bestPhysicalModels  = userInputs.getBestPhysicalModels()
 userInputs.saveBestPhysicalModels(myDirOutput+myName+"_bestModel.lis")
