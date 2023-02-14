@@ -11,7 +11,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-RESIDUALS_PATH = "C:\\Users\\aleks\\OneDrive\\Dokumenty\\mphys\\colden_noise_fwhm_temp\\residuals\\"
+RESIDUALS_PATH = "D:\\UNIVERSITY\\YEAR 4\\MASTERS\\mphys repository\\mphys\\tables\\residuals"
 NOISE_N = []
 
 
@@ -73,3 +73,4 @@ def get_data_single(filenames):
 # print(data)
 # print(len(data))
 
+# could add specific noise value into the array of each spectra dataset
