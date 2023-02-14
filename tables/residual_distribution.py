@@ -11,7 +11,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-RESIDUALS_PATH = "D:\\UNIVERSITY\\YEAR 4\\MASTERS\\mphys repository\\mphys\\tables\\residuals"
+RESIDUALS_PATH = "D:\\UNIVERSITY\\YEAR 4\\MASTERS\\mphys repository\\mphys\\tables\\residual"
 NOISE_N = []
 
 
