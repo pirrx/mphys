@@ -23,6 +23,10 @@ import os
 import sys
 from matplotlib import ticker, cm
 import matplotlib.ticker as ticker
+from scipy.interpolate import griddata as gr
+# from matplotlib.mlab import griddata
+
+
 
 
 # dirname = 'C:\\Users\\aleks\\OneDrive\\Dokumenty\\mphys\\chi contour\\'
@@ -91,12 +95,23 @@ def sort_meshgrid(size, temp, colden, fwhm):
 
 def chi_grid(chi, x_var, y_var):
     "chi meshgrid, can use meshgrid arrays for x and y len"
-    Z = np.zeros([len(x_var),len(y_var)], dtype = float)
+    Z = np.full([len(x_var),len(y_var)], 0.0, dtype = float)
 
     for i in range(len(Z)):
         Z[i,i] = chi[i]
         
     return Z
+
+# def tri_chi_grid(chi, x_var, y_var):
+#     "chi meshgrid, can use meshgrid arrays for x and y len"
+#     Z = np.zeros([len(x_var),len(y_var)], dtype = float)
+
+#     for i in range(len(Z)):
+#         Z[i,i] = chi[i]
+        
+#     Z = np.ravel(Z)
+        
+#     return Z
         
 
 def one_comp_contour_array(x_mesh_size_c, x_mesh_size_t, x_mesh_size_f, x_mesh_temp_c,
@@ -120,33 +135,83 @@ def one_comp_contour_array(x_mesh_size_c, x_mesh_size_t, x_mesh_size_f, x_mesh_t
     
     # plot_st.set_xlabel(r'First $T_1$ [K]')
     plot_st.set_ylabel(r'temp [K]')
-    plot_st.contour(x_mesh_size_t, y_mesh_size_t, chi_grid(chi, x_mesh_size_t, y_mesh_size_t), 5)
+    plot_st.contourf(x_mesh_size_t, y_mesh_size_t, chi_grid(chi, x_mesh_size_t, y_mesh_size_t), 5)
 
-    # plot_sc.set_xlabel(r'First $T_1$ [K]')
+    plot_sc.set_xlabel(r'First $T_1$ [K]')
     plot_sc.set_ylabel(r'colden [cm$^{-2}$]')
-    plot_sc.contour(x_mesh_size_c, y_mesh_size_c, chi_grid(chi, x_mesh_size_c, y_mesh_size_c), 5)
+    plot_sc.contourf(x_mesh_size_c, y_mesh_size_c, chi_grid(chi, x_mesh_size_c, y_mesh_size_c), 5)
 
     plot_sf.set_xlabel(r'size [arcmin]')
     plot_sf.set_ylabel(r'fwhm [kms$^{-1}$')
-    plot_sf.contour(x_mesh_size_f, y_mesh_size_f, chi_grid(chi, x_mesh_size_f, y_mesh_size_f),5)
+    plot_sf.contourf(x_mesh_size_f, y_mesh_size_f, chi_grid(chi, x_mesh_size_f, y_mesh_size_f),5)
 
     # plot_tc.set_xlabel(r'')
     # plot_tc.set_ylabel(r' $T_2$ [K]')
-    plot_tc.contour(x_mesh_temp_c, y_mesh_temp_c, chi_grid(chi, x_mesh_temp_c, y_mesh_temp_c),5)
+    plot_tc.contourf(x_mesh_temp_c, y_mesh_temp_c, chi_grid(chi, x_mesh_temp_c, y_mesh_temp_c),5)
     
     plot_tf.set_xlabel(r'temp [K]')
     # plot_tf.set_ylabel(r' $T_2$ [K]')
-    plot_tf.contour(x_mesh_temp_f, y_mesh_temp_f, chi_grid(chi, x_mesh_temp_f, y_mesh_temp_f),5)
+    plot_tf.contourf(x_mesh_temp_f, y_mesh_temp_f, chi_grid(chi, x_mesh_temp_f, y_mesh_temp_f),5)
     
     plot_cf.set_xlabel(r'colden [cm$^{-2}$]')
     # plot_cf.set_ylabel(r' $T_2$ [K]')
-    plot_cf.contour(x_mesh_colden_f, y_mesh_colden_f, chi_grid(chi, x_mesh_colden_f, y_mesh_colden_f),5)
+    plot_cf.contourf(x_mesh_colden_f, y_mesh_colden_f, chi_grid(chi, x_mesh_colden_f, y_mesh_colden_f),5)
     
     #fig.show()
     fig.savefig(title_name)
     
     return None
 
+
+def one_comp_tricontour_array(size, temp, colden, fwhm,
+                           chi, title_name):
+    
+    # z = chi_grid(x_mesh_size_c, y_mesh_size_c)
+    fig = plt.figure(figsize=(9, 10), dpi=300)
+    # fig.figsize=(450, 300)
+    fig.suptitle(title_name)
+    
+    plot_st = plt.subplot2grid((3, 3), (0, 0))
+    plot_sc = plt.subplot2grid((3, 3), (1, 0))
+    plot_sf = plt.subplot2grid((3, 3), (2, 0))
+    plot_tc = plt.subplot2grid((3, 3), (1, 1))
+    plot_tf = plt.subplot2grid((3, 3), (2, 1))
+    plot_cf = plt.subplot2grid((3, 3), (2, 2))
+    
+    
+    # xdata, ydata = np.ravel(x_mesh_size_c), np.ravel(y_mesh_size_c)
+
+
+    
+    
+    # plot_st.set_xlabel(r'First $T_1$ [K]')
+    plot_st.set_ylabel(r'temp [K]')
+    plot_st.tricontourf(size, temp, chi, 5)
+
+    # plot_sc.set_xlabel(r'First $T_1$ [K]')
+    plot_sc.set_ylabel(r'colden [cm$^{-2}$]')
+    plot_sc.tricontourf(size, colden, chi, 5)
+
+    plot_sf.set_xlabel(r'size [arcmin]')
+    plot_sf.set_ylabel(r'fwhm [kms$^{-1}$')
+    plot_sf.tricontourf(size, fwhm, chi, 5)
+
+    # plot_tc.set_xlabel(r'')
+    # plot_tc.set_ylabel(r' $T_2$ [K]')
+    plot_tc.tricontourf(temp, colden, chi, 5)
+    
+    plot_tf.set_xlabel(r'temp [K]')
+    # plot_tf.set_ylabel(r' $T_2$ [K]')
+    plot_tf.tricontourf(temp, fwhm, chi, 5)
+    
+    plot_cf.set_xlabel(r'colden [cm$^{-2}$]')
+    # plot_cf.set_ylabel(r' $T_2$ [K]')
+    plot_cf.tricontourf(colden, fwhm, chi, 5)
+    
+    #fig.show()
+    fig.savefig(title_name)
+    
+    return None
 
 
 data_genetic = get_data(filename_genetic)
@@ -158,30 +223,80 @@ size_genetic_1, temp_genetic_1, colden_genetic_1, fwhm_genetic_1, size_genetic_2
 X_st_g, Y_st_g,  X_sc_g, Y_sc_g,  X_sf_g, Y_sf_g,  X_tc_g, Y_tc_g, X_tf_g, Y_tf_g, X_cf_g, Y_cf_g = sort_meshgrid(size_genetic_1, temp_genetic_1, colden_genetic_1, fwhm_genetic_1)
 
 one_comp_contour_array(X_st_g, X_sc_g, X_sf_g, X_tc_g, X_tf_g, X_cf_g, 
-                       Y_st_g, Y_sc_g, Y_sf_g, Y_tc_g, Y_tf_g, Y_cf_g, chi_genetic, "Genetic chi distribution, 1st comp.")
+                        Y_st_g, Y_sc_g, Y_sf_g, Y_tc_g, Y_tf_g, Y_cf_g, chi_genetic, "Genetic chi distribution, 1st comp.")
 
 #2nd comp
 X_st_g, Y_st_g,  X_sc_g, Y_sc_g,  X_sf_g, Y_sf_g,  X_tc_g, Y_tc_g, X_tf_g, Y_tf_g, X_cf_g, Y_cf_g = sort_meshgrid(size_genetic_2, temp_genetic_2, colden_genetic_2, fwhm_genetic_2)
 
 one_comp_contour_array(X_st_g, X_sc_g, X_sf_g, X_tc_g, X_tf_g, X_cf_g, 
-                       Y_st_g, Y_sc_g, Y_sf_g, Y_tc_g, Y_tf_g, Y_cf_g, chi_genetic, "Genetic chi distribution, 2nd comp.")
+                        Y_st_g, Y_sc_g, Y_sf_g, Y_tc_g, Y_tf_g, Y_cf_g, chi_genetic, "Genetic chi distribution, 2nd comp.")
 
 
 
-#LM
+# #LM
 size_lm_1, temp_lm_1, colden_lm_1, fwhm_lm_1, size_lm_2, temp_lm_2, colden_lm_2, fwhm_lm_2, chi_lm = sort_data(data_lm)
 
 #1st comp
 X_st_l, Y_st_l,  X_sc_l, Y_sc_l,  X_sf_l, Y_sf_l,  X_tc_l, Y_tc_l, X_tf_l, Y_tf_l, X_cf_l, Y_cf_l = sort_meshgrid(size_lm_1, temp_lm_1, colden_lm_1, fwhm_lm_1)
 
 one_comp_contour_array(X_st_l, X_sc_l, X_sf_l, X_tc_l, X_tf_l, X_cf_l, 
-                       Y_st_l, Y_sc_l, Y_sf_l, Y_tc_l, Y_tf_l, Y_cf_l, chi_lm, "LM chi distribution, 1st comp.")
+                        Y_st_l, Y_sc_l, Y_sf_l, Y_tc_l, Y_tf_l, Y_cf_l, chi_lm, "LM chi distribution, 1st comp.")
 
 #2nd comp
 X_st_l, Y_st_l,  X_sc_l, Y_sc_l,  X_sf_l, Y_sf_l,  X_tc_l, Y_tc_l, X_tf_l, Y_tf_l, X_cf_l, Y_cf_l = sort_meshgrid(size_lm_2, temp_lm_2, colden_lm_2, fwhm_lm_2)
 
 one_comp_contour_array(X_st_l, X_sc_l, X_sf_l, X_tc_l, X_tf_l, X_cf_l, 
-                       Y_st_l, Y_sc_l, Y_sf_l, Y_tc_l, Y_tf_l, Y_cf_l, chi_lm, "LM chi distribution, 2nd comp.png")
+                        Y_st_l, Y_sc_l, Y_sf_l, Y_tc_l, Y_tf_l, Y_cf_l, chi_lm, "LM chi distribution, 2nd comp.png")
+
+
+
+
+# one_comp_tricontour_array(size_genetic_1, temp_genetic_1, colden_genetic_1, fwhm_genetic_1, chi_genetic, "Genetic chi distribution, 1st comp TRI")
+
+# one_comp_tricontour_array(size_genetic_2, temp_genetic_2, colden_genetic_2, fwhm_genetic_2, chi_genetic, "Genetic chi distribution, 2nd comp TRI")
+
+
+# one_comp_tricontour_array(size_lm_1, temp_lm_1, colden_lm_1, fwhm_lm_1, chi_lm, "LM chi distribution, 1st comp TRI")
+
+
+# one_comp_tricontour_array(size_lm_2, temp_lm_2, colden_lm_2, fwhm_lm_2, chi_lm, "LM chi distribution, 2nd comp TRI")
+
+
+
+
+
+# x = size_genetic_1
+# y = temp_genetic_1
+# z = chi_genetic
+
+# plt.figure()
+# plt.tricontour(x,y,z)
+
+
+# plt.tricontourf(x,y,z)
+# X, Y = np.meshgrid(x,y) 
+
+# Z= griddata(x,y,z,X,Y)
+
+# xi = np.linspace(x.min(), x.max(), 100)
+# yi = np.linspace(y.min(), y.max(), 100)
+# zi = gr(xi, yi, z, xi, yi, interp='')
+# contour=plt.contour(xi, yi, zi)
+
+
+# contour=plt.contour(X,Y,Z)
+# plt.show()
+
+
+
+
+
+
+
+
+
+
+
 
 # X, Y = np.meshgrid(data_genetic[:,2], data_genetic[:,3])
 

@@ -7,20 +7,26 @@ import numpy as np
 import matplotlib.pyplot as plt
 import scipy.constants as sc
 
-FILENAMES = ["e14.csv", "e15.csv", "e16.csv", "e17.csv", "low.csv", "high.csv"]
+#FILENAMES = ["e14.csv", "e15.csv", "e16.csv", "e17.csv", "low.csv", "high.csv"]
+
+FILENAMES = ["radex_e14.csv", "radex_e15.csv", "radex_e16.csv", "radex_e17.csv"]
 
 
 comp_1_n = [1e14, 1e15, 1e16, 1e17]
-comp_2_n = [1e14, 5e14, 1e15, 5e15, 1e16, 5e16, 1e17]
+# comp_2_n = [1e14, 5e14, 1e15, 5e15, 1e16, 5e16, 1e17]
+comp_2_n = comp_1_n
 
 comp_1_t = [250, 250, 250, 250]
-comp_2_t = [100, 100, 100, 100, 100, 100, 100]
+# comp_2_t = [100, 100, 100, 100, 100, 100, 100]
+comp_2_t = [100, 100, 100, 100, 100]
 
 comp_1_fwhm = [2, 2, 2, 2]
-comp_2_fwhm = [7, 7, 7, 7, 7, 7, 7]
+# comp_2_fwhm = [7, 7, 7, 7, 7, 7, 7]
+comp_2_fwhm = [7, 7, 7, 7, 7]
 
 comp_1_s = [0.7, 0.7, 0.7, 0.7]
 comp_2_s = [0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7]
+comp_2_s = comp_1_s
 
 t1 = 250
 t2 = 100
@@ -30,8 +36,8 @@ fwhm2 = 7
 
 s = 0.7
 
-max_intensity_1 = [1.246, 11.831, 74.01, 107.81]
-max_intensity_2 = [0.906, 4.339, 8.226, 27.75, 36.95, 41.51, 41.51]
+# max_intensity_1 = [1.246, 11.831, 74.01, 107.81]
+# max_intensity_2 = [0.906, 4.339, 8.226, 27.75, 36.95, 41.51, 41.51]
 
 single_n = [1.86e14, 3.96e14, 8.23e14, 1.01e16, 5.71e16, 4.15e14, 9.18e14, 4.93e15, 9.94e15, 9.96e16,
             7.84e15, 1.13e16, 3.60e16, 3.47e16, 6.18e16, 6.67e16]
@@ -198,22 +204,22 @@ print(UPPER)
 
 WEIGHTED_N = []
 
-WEIGHTED_N = [weighted_mean(comp_1[0], comp_2[0], max_intensity_1[0], max_intensity_2[0]), 
-              (weighted_mean(comp_1[0], comp_2[1], max_intensity_1[0], max_intensity_2[1])),
-              (weighted_mean(comp_1[0], comp_2[2], max_intensity_1[0], max_intensity_2[2])), 
-              (weighted_mean(comp_1[0], comp_2[4], max_intensity_1[0], max_intensity_2[4])),
-              (weighted_mean(comp_1[0], comp_2[6], max_intensity_1[0], max_intensity_2[6])),
-              (weighted_mean(comp_1[1], comp_2[1], max_intensity_1[1], max_intensity_2[1])), 
-              (weighted_mean(comp_1[1], comp_2[2], max_intensity_1[1], max_intensity_2[2])),
-              (weighted_mean(comp_1[1], comp_2[3], max_intensity_1[1], max_intensity_2[3])),
-              (weighted_mean(comp_1[1], comp_2[4], max_intensity_1[1], max_intensity_2[4])),
-              (weighted_mean(comp_1[1], comp_2[6], max_intensity_1[1], max_intensity_2[6])),
-              (weighted_mean(comp_1[2], comp_2[3], max_intensity_1[2], max_intensity_2[3])),
-              (weighted_mean(comp_1[2], comp_2[4], max_intensity_1[2], max_intensity_2[4])),
-              (weighted_mean(comp_1[2], comp_2[5], max_intensity_1[2], max_intensity_2[5])),
-              (weighted_mean(comp_1[2], comp_2[6], max_intensity_1[2], max_intensity_2[6])),
-              (weighted_mean(comp_1[3], comp_2[5], max_intensity_1[3], max_intensity_2[5])),
-              (weighted_mean(comp_1[3], comp_2[6], max_intensity_1[3], max_intensity_2[6]))]
+# WEIGHTED_N = [weighted_mean(comp_1[0], comp_2[0], max_intensity_1[0], max_intensity_2[0]), 
+#               (weighted_mean(comp_1[0], comp_2[1], max_intensity_1[0], max_intensity_2[1])),
+#               (weighted_mean(comp_1[0], comp_2[2], max_intensity_1[0], max_intensity_2[2])), 
+#               (weighted_mean(comp_1[0], comp_2[4], max_intensity_1[0], max_intensity_2[4])),
+#               (weighted_mean(comp_1[0], comp_2[6], max_intensity_1[0], max_intensity_2[6])),
+#               (weighted_mean(comp_1[1], comp_2[1], max_intensity_1[1], max_intensity_2[1])), 
+#               (weighted_mean(comp_1[1], comp_2[2], max_intensity_1[1], max_intensity_2[2])),
+#               (weighted_mean(comp_1[1], comp_2[3], max_intensity_1[1], max_intensity_2[3])),
+#               (weighted_mean(comp_1[1], comp_2[4], max_intensity_1[1], max_intensity_2[4])),
+#               (weighted_mean(comp_1[1], comp_2[6], max_intensity_1[1], max_intensity_2[6])),
+#               (weighted_mean(comp_1[2], comp_2[3], max_intensity_1[2], max_intensity_2[3])),
+#               (weighted_mean(comp_1[2], comp_2[4], max_intensity_1[2], max_intensity_2[4])),
+#               (weighted_mean(comp_1[2], comp_2[5], max_intensity_1[2], max_intensity_2[5])),
+#               (weighted_mean(comp_1[2], comp_2[6], max_intensity_1[2], max_intensity_2[6])),
+#               (weighted_mean(comp_1[3], comp_2[5], max_intensity_1[3], max_intensity_2[5])),
+#               (weighted_mean(comp_1[3], comp_2[6], max_intensity_1[3], max_intensity_2[6]))]
 
 labels = [r'$10^{14}, 10^{14}$' + '\n' + r'$\chi^2_R = $' + str(CHI[0]), 
           r'$10^{14}, 5\times10^{14}$' +' \n' + r'$\chi^2_R = $' + str(CHI[1]), 
@@ -234,7 +240,7 @@ labels = [r'$10^{14}, 10^{14}$' + '\n' + r'$\chi^2_R = $' + str(CHI[0]),
           ]
    
     
-print(WEIGHTED_N)
+# print(WEIGHTED_N)
 
 
 x = np.linspace(0,16,16)
@@ -248,7 +254,7 @@ plt.xticks(ticks=x, labels=labels)
 plt.xlabel('column density components N1, N2')
 plt.ylabel(variable_name)
 
-plt.scatter(x, WEIGHTED_N, label='weighted average from generated values')
+# plt.scatter(x, WEIGHTED_N, label='weighted average from generated values')
 plt.errorbar(x, single, yerr=(LOWER, UPPER), ls='none', marker='o', capsize=3,  label='fit results', color='C1')
 plt.vlines(x, ymin=og_data[0], ymax=og_data[1], color='red', linewidth=0.5)
 plt.scatter(x, og_data[0], color='red', marker='x', s=15, label='generated comp. 1 and 2 max and min value')

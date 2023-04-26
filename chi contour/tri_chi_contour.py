@@ -8,6 +8,7 @@ Created on Tue Apr 11 16:10:01 2023
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import ticker
+from matplotlib.colors import LogNorm, SymLogNorm, CenteredNorm
 
 # dirname = 'C:\\Users\\aleks\\OneDrive\\Dokumenty\\mphys\\chi contour\\'
 dirname = ""
@@ -52,11 +53,25 @@ def sort_data(data):
     return size1, temp1, colden1, fwhm1, size2, temp2, colden2, fwhm2, chi
 
 
-def one_comp_tricontour_array(size, temp, colden, fwhm, chi, title_name):
+def one_comp_tricontour_array(size, temp, colden, fwhm, chi, title_name, limit):
     
     fig = plt.figure(figsize=(24, 16), dpi=300)
     fig.suptitle(title_name, fontsize=50)
     # fig.tight_layout()
+    
+    # for i in range(len(chi)):
+    #     if chi[i] > 5:
+    #         chi[i] = np.nan
+            
+    size = np.delete(size, np.where(chi > 2))    
+    temp = np.delete(temp, np.where(chi > 2))    
+    colden = np.delete(colden, np.where(chi > 2))    
+    fwhm = np.delete(fwhm, np.where(chi > 2))    
+    chi = np.delete(chi, np.where(chi > 2))    
+    
+    # orig_map=plt.cm.get_cmap('viridis')
+    # # reversing the original colormap using reversed() function
+    # reversed_map = orig_map.reversed()
     
     plot_st = plt.subplot2grid((3, 3), (0, 0))
     plot_sc = plt.subplot2grid((3, 3), (1, 0))
@@ -66,28 +81,28 @@ def one_comp_tricontour_array(size, temp, colden, fwhm, chi, title_name):
     plot_cf = plt.subplot2grid((3, 3), (2, 2))
     
     plot_st.set_ylabel(r'temp [K]')
-    tri_st = plot_st.tricontourf(size, temp, chi, 5)
-    fig.colorbar(tri_st, format=ticker.FuncFormatter(fmt))
+    tri_st = plot_st.tricontourf(size, temp, chi, 20, vmin=0, vmax=limit)#cmap=r'plasma_r', norm=SymLogNorm(linthresh=1, linscale=1))
+    fig.colorbar(tri_st, ax=plot_st, format=ticker.FuncFormatter(fmt))
 
     plot_sc.set_ylabel(r'colden [cm$^{-2}$]')
-    tri_sc = plot_sc.tricontourf(size, colden, chi, 5)
-    fig.colorbar(tri_sc, format=ticker.FuncFormatter(fmt))
+    tri_sc = plot_sc.tricontourf(size, colden, chi, 20, vmin=0, vmax=limit)#cmap='plasma_r', norm=SymLogNorm(linthresh=1, linscale=1))
+    fig.colorbar(tri_sc, ax=plot_sc, format=ticker.FuncFormatter(fmt))
 
     plot_sf.set_xlabel(r'size [arcmin]')
     plot_sf.set_ylabel(r'fwhm [kms$^{-1}$')
-    tri_sf = plot_sf.tricontourf(size, fwhm, chi, 5)
-    fig.colorbar(tri_sf, format=ticker.FuncFormatter(fmt))
+    tri_sf = plot_sf.tricontourf(size, fwhm, chi, 20, vmin=0, vmax=limit)#cmap='plasma_r', norm=SymLogNorm(linthresh=1, linscale=1))
+    fig.colorbar(tri_sf, ax=plot_sf, format=ticker.FuncFormatter(fmt))
 
-    tri_tc = plot_tc.tricontourf(temp, colden, chi, 5)
-    fig.colorbar(tri_tc, format=ticker.FuncFormatter(fmt))
+    tri_tc = plot_tc.tricontourf(temp, colden, chi, 20, vmin=0, vmax=limit)#cmap='plasma_r', norm=SymLogNorm(linthresh=1, linscale=1))
+    fig.colorbar(tri_tc, ax=plot_tc, format=ticker.FuncFormatter(fmt))
     
     plot_tf.set_xlabel(r'temp [K]')
-    tri_tf = plot_tf.tricontourf(temp, fwhm, chi, 5)
-    fig.colorbar(tri_tf, format=ticker.FuncFormatter(fmt))
+    tri_tf = plot_tf.tricontourf(temp, fwhm, chi, 20, vmin=0, vmax=limit)#cmap='plasma_r', norm=SymLogNorm(linthresh=1, linscale=1))
+    fig.colorbar(tri_tf, ax=plot_tf, format=ticker.FuncFormatter(fmt))
     
     plot_cf.set_xlabel(r'colden [cm$^{-2}$]')
-    tri_cf = plot_cf.tricontourf(colden, fwhm, chi, 5)
-    fig.colorbar(tri_cf, format=ticker.FuncFormatter(fmt))
+    tri_cf = plot_cf.tricontourf(colden, fwhm, chi, 20, vmin=0, vmax=limit)#cmap='plasma_r', norm=SymLogNorm(linthresh=1, linscale=1))
+    fig.colorbar(tri_cf, ax=plot_cf, format=ticker.FuncFormatter(fmt))
     
     # plt.colorbar(format=ticker.FuncFormatter(fmt))
     
@@ -107,14 +122,14 @@ size_lm_1, temp_lm_1, colden_lm_1, fwhm_lm_1, size_lm_2, temp_lm_2, colden_lm_2,
 
 
 # GENETIC PLOT
-one_comp_tricontour_array(size_genetic_1, temp_genetic_1, colden_genetic_1, fwhm_genetic_1, chi_genetic, "Genetic chi distribution, 1st comp")
+one_comp_tricontour_array(size_genetic_1, temp_genetic_1, colden_genetic_1, fwhm_genetic_1, chi_genetic, "Genetic chi distribution, 1st comp", 2)
 
-one_comp_tricontour_array(size_genetic_2, temp_genetic_2, colden_genetic_2, fwhm_genetic_2, chi_genetic, "Genetic chi distribution, 2nd comp")
+one_comp_tricontour_array(size_genetic_2, temp_genetic_2, colden_genetic_2, fwhm_genetic_2, chi_genetic, "Genetic chi distribution, 2nd comp", 2)
 
 # LM PLOT
-one_comp_tricontour_array(size_lm_1, temp_lm_1, colden_lm_1, fwhm_lm_1, chi_lm, "LM chi distribution, 1st comp")
+one_comp_tricontour_array(size_lm_1, temp_lm_1, colden_lm_1, fwhm_lm_1, chi_lm, "LM chi distribution, 1st comp", 0.05)
 
-one_comp_tricontour_array(size_lm_2, temp_lm_2, colden_lm_2, fwhm_lm_2, chi_lm, "LM chi distribution, 2nd comp")
+one_comp_tricontour_array(size_lm_2, temp_lm_2, colden_lm_2, fwhm_lm_2, chi_lm, "LM chi distribution, 2nd comp", 0.05)
 
 
 
