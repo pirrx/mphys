@@ -29,8 +29,8 @@ from path_file import TABLES_PATH
 
 
 
-FILENAMES = ["radex_e14.csv", "radex_e15.csv", "radex_e16.csv", "radex_e17.csv"]
-# FILENAMES = ["lte_e14.csv", "lte_e15.csv", "lte_e16.csv", "lte_e17.csv"]
+# FILENAMES = ["radex_e14.csv", "radex_e15.csv", "radex_e16.csv", "radex_e17.csv"]
+FILENAMES = ["lte_e14.csv", "lte_e15.csv", "lte_e16.csv", "lte_e17.csv"]
 
 N_SINGLE_T_FITTING = []
 
@@ -98,21 +98,21 @@ colden => changed = 3
 
 """
 
-""" TECHINCALLY SO FAR ONLY FITTED INDEX MATTERS """
+""" TECHINCALLY SO FAR ONLY FITTED & single INDEX MATTERS """
 
-index_generated = 0 #generated data (n2 or t2 etc)
-index_generated_n1 = 1 #other generated data (n1 or t1 etc)
-index_fitted = 8 #-2 variable for fitting
-index_fitted_n1 = 11 #_1 variable for fitting
+index_generated = 3 #comp 2 generated data (n2 or t2 etc)
+index_generated_n1 = 2 #other generated data (n1 or t1 etc)
+index_fitted = 17 #comp 2 variable for fitting
+index_fitted_n1 = 14 #_1 variable for fitting
 index_changed = 1 #whats gonna be on the x axis
 
-index_single = 33
+index_single = 36
 
-t_index_generated = 3
-t_index_generated_t1 = 2
-t_index_fitted = 17
-t_index_fitted_t1 = 14
-t_index_changed = 1
+# t_index_generated = 3
+# t_index_generated_t1 = 2
+# t_index_fitted = 17
+# t_index_fitted_t1 = 14
+# t_index_changed = 1
 
 
 
@@ -159,31 +159,108 @@ Z_N1 = populate_mesh_grid(X, Y, FITTED_e14_N1, FITTED_e15_N1, FITTED_e16_N1, FIT
 Z_N2 = populate_mesh_grid(X, Y, FITTED_e14, FITTED_e15, FITTED_e16, FITTED_e17)
 
 # create axes meshgrid
-N_mesh_1, N_mesh_2 = np.meshgrid(X, Y)
+N_mesh_2, N_mesh_1 = np.meshgrid(X, Y)
+"""
+^^^ i am frankly unsure on how the axes should be set up but this seems correct
+"""
 
 print(N_mesh_1)
 print(N_mesh_2)
 # Z_N2[1,2]=55.
+print(Z_N1)
 print(Z_N2)
+print(Z_Nsingle)
+
+
+
+
+# GENERALLY: UNLESS PLOTTING COLDEN, LOGSPACE LEVELS (JUST BELOW) 
+# AND set_yscale, set_xscale can be commented x- and -axis is not colden
+#remember to change the levels
+# also ignore the format=ticker thingy if not log
+# remember to change the main title and graph names
+# make a judgement whether there needs to be one or many colorbars
+
+title_name = "Column density $N$"
+
+title_1 = r'$N_1$'
+title_2 = r'$N_2$'
+title_3 = r'$N_{\mathrm{single}}$'
+
+# title_1 = r'$T_1$ ($T_1$ = 250K)'
+# title_2 = r'$T_2$ ($T_2$ = 100K)'
+# title_3 = r'$T_{\mathrm{single}}$'
+
+# title_1 = r'$F_1$ ($F_1$ = 2)'
+# title_2 = r'$F_2$ ($F_2$ = 7)'
+# title_3 = r'$F_{\mathrm{single}}$'
+
+# title_1 = r'$s_1$ ($s_1$ = 0.7")'
+# title_2 = r'$s_2$ ($s_2$ = 0.7")'
+# title_3 = r'$s_{\mathrm{single}}$'
 
 levels = np.logspace(14, 17, 15)
-# print(levels)
+# levels = np.linspace(50, 300, 25)
+# levels = [50, 75, 100, 125, 150, 175, 200, 225, 250, 275, 300]
+# levels = np.linspace(1, 10, 21)
+# levels_1 = np.linspace(1,4, 22)
+# levels_2 = np.linspace(4, 8, 22)
+# levels = np.linspace(0.3, 1.3, 20)
 
-fig = plt.figure(dpi=400)
-plt.yscale('log')
-plt.xscale('log')
-plt.title(r'N$_{single}$', fontsize=10)
-plt.xlabel(r'First column density component N$_1$ [cm$^{-2}$]')
-plt.ylabel(r'Second column density component N$_2$ [cm$^{-2}$]')
-# plt.ticks()
-# plt.ylabel(variable_name)
-plt.contourf(N_mesh_1, N_mesh_2, Z_N2, 20,  cmap='RdBu_r')
-plt.colorbar(format=ticker.FuncFormatter(fmt))
-# vmin=1e14, vmax=1e17
-# format=ticker.FuncFormatter(fmt)
-# % distance from generated values
-# norm=LogNorm(), levels=levels
-# cmap='viridis'
-# cmap='RdBu_r'
-#SymLogNorm(linthresh=0.03, linscale=1)
+#-------------------------------------------
+
+# fig = plt.figure(figsize=(20, 5), dpi=400)
+fig, axes = plt.subplots(nrows=1, ncols=3, sharey=True, figsize=(15,5), constrained_layout=True)
+plot_1, plot_2, plot_3 = axes.flatten()
+
+fig.suptitle(title_name, fontsize=20)
+# fig.tight_layout()
+
+# plot_1 = plt.subplot2grid((1, 5), (0, 0))
+# plot_2 = plt.subplot2grid((1, 5), (0, 2))
+# plot_3 = plt.subplot2grid((1, 5), (0, 4))
+
+# figsize=(20,5)
+plot_1.set_title(title_1, fontsize=15)
+plot_1.set_xlabel(r'N$_1$ [cm$^{-2}$]')
+plot_1.set_ylabel(r'N$_2$ [cm$^{-2}$]')
+plot_1.set_xscale('log')
+plot_1.set_yscale('log')
+grid_1 = plot_1.contourf(N_mesh_1, N_mesh_2, Z_N1, levels) #cmap=r'plasma_r', norm=SymLogNorm(linthresh=1, linscale=1))
+# fig.colorbar(grid_1, ax=plot_1)
+
+plot_2.set_title(title_2, fontsize=15)
+plot_2.set_xlabel(r'N$_1$ [cm$^{-2}$]')
+# plot_2.set_ylabel(r'N$_2$ [cm$^{-2}$]')
+plot_2.set_xscale('log')
+plot_2.set_yscale('log')
+grid_2 = plot_2.contourf(N_mesh_1, N_mesh_2, Z_N2, levels) #cmap=r'plasma_r', norm=SymLogNorm(linthresh=1, linscale=1))
+# fig.colorbar(grid_2, ax=plot_2)
+
+plot_3.set_title(title_3, fontsize=15)
+plot_3.set_xlabel(r'N$_1$ [cm$^{-2}$]')
+# plot_3.set_ylabel(r'N$_2$ [cm$^{-2}$]')
+plot_3.set_xscale('log')
+plot_3.set_yscale('log')
+grid_3 = plot_3.contourf(N_mesh_1, N_mesh_2, Z_Nsingle, levels) #cmap=r'plasma_r', norm=SymLogNorm(linthresh=1, linscale=1))
+fig.colorbar(grid_3, ax=plot_3, format=ticker.FuncFormatter(fmt))
+
+
+
+# plt.yscale('log')
+# plt.xscale('log')
+# plt.title(r'N$_{single}$', fontsize=10)
+# plt.xlabel(r'First column density component N$_1$ [cm$^{-2}$]')
+# plt.ylabel(r'Second column density component N$_2$ [cm$^{-2}$]')
+# # plt.ticks()
+# # plt.ylabel(variable_name)
+# plt.contourf(N_mesh_1, N_mesh_2, Z_N2, 20,  cmap='RdBu_r')
+# plt.colorbar(format=ticker.FuncFormatter(fmt))
+# # vmin=1e14, vmax=1e17
+# # format=ticker.FuncFormatter(fmt)
+# # % distance from generated values
+# # norm=LogNorm(), levels=levels
+# # cmap='viridis'
+# # cmap='RdBu_r'
+# #SymLogNorm(linthresh=0.03, linscale=1)
 
