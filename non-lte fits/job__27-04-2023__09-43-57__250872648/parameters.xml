@@ -1,0 +1,886 @@
+<?xml version="1.0" ?>
+<ModelParameters>
+
+
+    <!-- define number of parameters -->
+    <NumberParameters>86</NumberParameters>
+
+
+    <!-- ============================================================================================================================================= -->
+    <!-- first input file -->
+
+
+    <!-- define path of XCLASS root directory -->
+    <Parameter fit="false">
+        <name>XCLASSRootDir</name>
+        <value>/home/xclassuser1/XClass/XCLASS__version_1.4.1/</value>
+        <error> </error>
+        <lowlimit>0</lowlimit>
+        <uplimit>1</uplimit>
+    </Parameter>
+
+
+    <!-- define min. number of transitions used for SQL query -->
+    <Parameter fit="false">
+        <name>MinNumTransitionsSQL</name>
+        <value>1</value>
+        <error> </error>
+        <lowlimit>0</lowlimit>
+        <uplimit>1</uplimit>
+    </Parameter>
+
+
+    <!-- define max. number of transitions used for SQL query -->
+    <Parameter fit="false">
+        <name>MaxNumTransitionsSQL</name>
+        <value>0</value>
+        <error> </error>
+        <lowlimit>0</lowlimit>
+        <uplimit>1</uplimit>
+    </Parameter>
+
+
+    <!-- define highest lower energy of a transition used for SQL query -->
+    <Parameter fit="false">
+        <name>MaxElowSQL</name>
+        <value>699892.9163837932</value>
+        <error> </error>
+        <lowlimit>0</lowlimit>
+        <uplimit>1</uplimit>
+    </Parameter>
+
+
+    <!-- define min. intensity of a transition used for SQL query -->
+    <Parameter fit="false">
+        <name>MingASQL</name>
+        <value>0.0</value>
+        <error> </error>
+        <lowlimit>0</lowlimit>
+        <uplimit>1</uplimit>
+    </Parameter>
+
+
+    <!-- define order of a transition used for SQL query -->
+    <Parameter fit="false">
+        <name>OrderTransSQL</name>
+        <value>1</value>
+        <error> </error>
+        <lowlimit>0</lowlimit>
+        <uplimit>1</uplimit>
+    </Parameter>
+
+
+    <!-- define number of molecules -->
+    <Parameter fit="false">
+        <name>Number_Molecules</name>
+        <value>1</value>
+        <error> </error>
+        <lowlimit>0</lowlimit>
+        <uplimit>1</uplimit>
+    </Parameter>
+
+
+    <!-- =========================================================== describe new molecule =========================================================== -->
+    <!-- define Molecule_Name -->
+    <Parameter fit="false">
+        <name>Molecule_Name</name>
+        <value>CH3CN;v=0;</value>
+        <error> </error>
+        <lowlimit>0</lowlimit>
+        <uplimit>1</uplimit>
+    </Parameter>
+
+
+    <!-- define Molecule_Inex -->
+    <Parameter fit="false">
+        <name>Molecule_Inex</name>
+        <value>1</value>
+        <error> </error>
+        <lowlimit>0</lowlimit>
+        <uplimit>1</uplimit>
+    </Parameter>
+
+
+    <!-- define Molecule_Name -->
+    <Parameter fit="false">
+        <name>Number_MolLine</name>
+        <value>2</value>
+        <error> </error>
+        <lowlimit>0</lowlimit>
+        <uplimit>1</uplimit>
+    </Parameter>
+
+
+    <!-- ***************************************************** define parameters for component 1 ***************************************************** -->
+
+
+    <!-- define MolfitFileFormatVersion -->
+    <Parameter fit="false">
+        <name>MolfitFileFormatVersion</name>
+        <value>NEW</value>
+        <error> </error>
+        <lowlimit>0</lowlimit>
+        <uplimit>0</uplimit>
+    </Parameter>
+
+
+    <!-- define inline dust temperature parameter -->
+    <Parameter fit="false">
+        <name>tdFlag</name>
+        <value>F</value>
+        <error> </error>
+        <lowlimit>0</lowlimit>
+        <uplimit>0</uplimit>
+    </Parameter>
+
+
+    <!-- define nHFlag -->
+    <Parameter fit="false">
+        <name>nHFlag</name>
+        <value>F</value>
+        <error> </error>
+        <lowlimit>0</lowlimit>
+        <uplimit>0</uplimit>
+    </Parameter>
+
+
+    <!-- define gepmetry flag -->
+    <Parameter fit="false">
+        <name>GeometryFlag</name>
+        <value>CC</value>
+        <error> </error>
+        <lowlimit>0</lowlimit>
+        <uplimit>0</uplimit>
+    </Parameter>
+
+
+    <!-- define molecule flag -->
+    <Parameter fit="false">
+        <name>MoleculeFlag</name>
+        <value>M</value>
+        <error> </error>
+        <lowlimit>0</lowlimit>
+        <uplimit>0</uplimit>
+    </Parameter>
+
+
+    <!-- define Non-LTE RRL flag -->
+    <Parameter fit="false">
+        <name>RRLNonLTEFlag</name>
+        <value>F</value>
+        <error> </error>
+        <lowlimit>0</lowlimit>
+        <uplimit>0</uplimit>
+    </Parameter>
+
+
+    <!-- define line width flag -->
+    <Parameter fit="false">
+        <name>LineWidthFlag</name>
+        <value>G</value>
+        <error> </error>
+        <lowlimit>0</lowlimit>
+        <uplimit>0</uplimit>
+    </Parameter>
+
+
+    <!-- define velocity flag -->
+    <Parameter fit="false">
+        <name>VelOffFlag</name>
+        <value>T</value>
+        <error> </error>
+        <lowlimit>0</lowlimit>
+        <uplimit>0</uplimit>
+    </Parameter>
+
+
+    <!-- define extension flag -->
+    <Parameter fit="false">
+        <name>ExtensionFlag</name>
+        <value>T</value>
+        <error> </error>
+        <lowlimit>0</lowlimit>
+        <uplimit>0</uplimit>
+    </Parameter>
+
+
+    <!-- define extension flag -->
+    <Parameter fit="false">
+        <name>KeywordFlag</name>
+        <value>T</value>
+        <error> </error>
+        <lowlimit>0</lowlimit>
+        <uplimit>0</uplimit>
+    </Parameter>
+
+
+    <!-- define source_size_flag -->
+    <Parameter fit="false">
+        <name>source_size_flag</name>
+        <value>y</value>
+        <error> </error>
+        <lowlimit>-1e99</lowlimit>
+        <uplimit>1e99</uplimit>
+    </Parameter>
+
+
+    <!-- define source_size_lowlimit -->
+    <Parameter fit="false">
+        <name>source_size_lowlimit</name>
+        <value>0.3</value>
+        <error> </error>
+        <lowlimit>-1e99</lowlimit>
+        <uplimit>1e99</uplimit>
+    </Parameter>
+
+
+    <!-- define source_size_uplimit -->
+    <Parameter fit="false">
+        <name>source_size_uplimit</name>
+        <value>1.3</value>
+        <error> </error>
+        <lowlimit>-1e99</lowlimit>
+        <uplimit>1e99</uplimit>
+    </Parameter>
+
+
+    <!-- define source_size -->
+    <Parameter fit="true">
+        <name>source_size</name>
+        <value>0.7</value>
+        <error> </error>
+        <lowlimit>0.3</lowlimit>
+        <uplimit>1.3</uplimit>
+    </Parameter>
+
+
+    <!-- define T_rot_flag -->
+    <Parameter fit="false">
+        <name>T_rot_flag</name>
+        <value>y</value>
+        <error> </error>
+        <lowlimit>-1e99</lowlimit>
+        <uplimit>1e99</uplimit>
+    </Parameter>
+
+
+    <!-- define T_rot_lowlimit -->
+    <Parameter fit="false">
+        <name>T_rot_lowlimit</name>
+        <value>40.0</value>
+        <error> </error>
+        <lowlimit>-1e99</lowlimit>
+        <uplimit>1e99</uplimit>
+    </Parameter>
+
+
+    <!-- define T_rot_uplimit -->
+    <Parameter fit="false">
+        <name>T_rot_uplimit</name>
+        <value>350.0</value>
+        <error> </error>
+        <lowlimit>-1e99</lowlimit>
+        <uplimit>1e99</uplimit>
+    </Parameter>
+
+
+    <!-- define T_rot -->
+    <Parameter fit="true">
+        <name>T_rot</name>
+        <value>100.0</value>
+        <error> </error>
+        <lowlimit>40.0</lowlimit>
+        <uplimit>350.0</uplimit>
+    </Parameter>
+
+
+    <!-- define N_tot_flag -->
+    <Parameter fit="false">
+        <name>N_tot_flag</name>
+        <value>y</value>
+        <error> </error>
+        <lowlimit>-1e99</lowlimit>
+        <uplimit>1e99</uplimit>
+    </Parameter>
+
+
+    <!-- define N_tot_lowlimit -->
+    <Parameter fit="false">
+        <name>N_tot_lowlimit</name>
+        <value>13.698970004336019</value>
+        <error> </error>
+        <lowlimit>-1e99</lowlimit>
+        <uplimit>1e99</uplimit>
+    </Parameter>
+
+
+    <!-- define N_tot_uplimit -->
+    <Parameter fit="false">
+        <name>N_tot_uplimit</name>
+        <value>17.69897000433602</value>
+        <error> </error>
+        <lowlimit>-1e99</lowlimit>
+        <uplimit>1e99</uplimit>
+    </Parameter>
+
+
+    <!-- define N_tot -->
+    <Parameter fit="true">
+        <name>N_tot</name>
+        <value>15.0</value>
+        <error> </error>
+        <lowlimit>13.698970004336019</lowlimit>
+        <uplimit>17.69897000433602</uplimit>
+    </Parameter>
+
+
+    <!-- define V_width_Gauss_flag -->
+    <Parameter fit="false">
+        <name>V_width_Gauss_flag</name>
+        <value>y</value>
+        <error> </error>
+        <lowlimit>-1e99</lowlimit>
+        <uplimit>1e99</uplimit>
+    </Parameter>
+
+
+    <!-- define V_width_Gauss_lowlimit -->
+    <Parameter fit="false">
+        <name>V_width_Gauss_lowlimit</name>
+        <value>1</value>
+        <error> </error>
+        <lowlimit>-1e99</lowlimit>
+        <uplimit>1e99</uplimit>
+    </Parameter>
+
+
+    <!-- define V_width_Gauss_uplimit -->
+    <Parameter fit="false">
+        <name>V_width_Gauss_uplimit</name>
+        <value>9</value>
+        <error> </error>
+        <lowlimit>-1e99</lowlimit>
+        <uplimit>1e99</uplimit>
+    </Parameter>
+
+
+    <!-- define V_width_Gauss -->
+    <Parameter fit="true">
+        <name>V_width_Gauss</name>
+        <value>2</value>
+        <error> </error>
+        <lowlimit>1.0</lowlimit>
+        <uplimit>9.0</uplimit>
+    </Parameter>
+
+
+    <!-- define V_off_flag -->
+    <Parameter fit="false">
+        <name>V_off_flag</name>
+        <value>n</value>
+        <error> </error>
+        <lowlimit>-1e99</lowlimit>
+        <uplimit>1e99</uplimit>
+    </Parameter>
+
+
+    <!-- define V_off_lowlimit -->
+    <Parameter fit="false">
+        <name>V_off_lowlimit</name>
+        <value>0.0</value>
+        <error> </error>
+        <lowlimit>-1e99</lowlimit>
+        <uplimit>1e99</uplimit>
+    </Parameter>
+
+
+    <!-- define V_off_uplimit -->
+    <Parameter fit="false">
+        <name>V_off_uplimit</name>
+        <value>0.0</value>
+        <error> </error>
+        <lowlimit>-1e99</lowlimit>
+        <uplimit>1e99</uplimit>
+    </Parameter>
+
+
+    <!-- define V_off -->
+    <Parameter fit="false">
+        <name>V_off</name>
+        <value>0.0</value>
+        <error> </error>
+        <lowlimit>-1e99</lowlimit>
+        <uplimit>1e99</uplimit>
+    </Parameter>
+
+
+    <!-- define LayerDistance -->
+    <Parameter fit="false">
+        <name>LayerDistance</name>
+        <value>100</value>
+        <error> </error>
+        <lowlimit>-1e99</lowlimit>
+        <uplimit>1e99</uplimit>
+    </Parameter>
+
+
+    <!-- define keyword -->
+    <Parameter fit="false">
+        <name>keyword</name>
+        <value>Non-LTE</value>
+        <error> </error>
+        <lowlimit>-1e99</lowlimit>
+        <uplimit>1e99</uplimit>
+    </Parameter>
+
+
+    <!-- ***************************************************** define parameters for component 2 ***************************************************** -->
+
+
+    <!-- define MolfitFileFormatVersion -->
+    <Parameter fit="false">
+        <name>MolfitFileFormatVersion</name>
+        <value>NEW</value>
+        <error> </error>
+        <lowlimit>0</lowlimit>
+        <uplimit>0</uplimit>
+    </Parameter>
+
+
+    <!-- define inline dust temperature parameter -->
+    <Parameter fit="false">
+        <name>tdFlag</name>
+        <value>F</value>
+        <error> </error>
+        <lowlimit>0</lowlimit>
+        <uplimit>0</uplimit>
+    </Parameter>
+
+
+    <!-- define nHFlag -->
+    <Parameter fit="false">
+        <name>nHFlag</name>
+        <value>F</value>
+        <error> </error>
+        <lowlimit>0</lowlimit>
+        <uplimit>0</uplimit>
+    </Parameter>
+
+
+    <!-- define gepmetry flag -->
+    <Parameter fit="false">
+        <name>GeometryFlag</name>
+        <value>CC</value>
+        <error> </error>
+        <lowlimit>0</lowlimit>
+        <uplimit>0</uplimit>
+    </Parameter>
+
+
+    <!-- define molecule flag -->
+    <Parameter fit="false">
+        <name>MoleculeFlag</name>
+        <value>M</value>
+        <error> </error>
+        <lowlimit>0</lowlimit>
+        <uplimit>0</uplimit>
+    </Parameter>
+
+
+    <!-- define Non-LTE RRL flag -->
+    <Parameter fit="false">
+        <name>RRLNonLTEFlag</name>
+        <value>F</value>
+        <error> </error>
+        <lowlimit>0</lowlimit>
+        <uplimit>0</uplimit>
+    </Parameter>
+
+
+    <!-- define line width flag -->
+    <Parameter fit="false">
+        <name>LineWidthFlag</name>
+        <value>G</value>
+        <error> </error>
+        <lowlimit>0</lowlimit>
+        <uplimit>0</uplimit>
+    </Parameter>
+
+
+    <!-- define velocity flag -->
+    <Parameter fit="false">
+        <name>VelOffFlag</name>
+        <value>T</value>
+        <error> </error>
+        <lowlimit>0</lowlimit>
+        <uplimit>0</uplimit>
+    </Parameter>
+
+
+    <!-- define extension flag -->
+    <Parameter fit="false">
+        <name>ExtensionFlag</name>
+        <value>T</value>
+        <error> </error>
+        <lowlimit>0</lowlimit>
+        <uplimit>0</uplimit>
+    </Parameter>
+
+
+    <!-- define extension flag -->
+    <Parameter fit="false">
+        <name>KeywordFlag</name>
+        <value>T</value>
+        <error> </error>
+        <lowlimit>0</lowlimit>
+        <uplimit>0</uplimit>
+    </Parameter>
+
+
+    <!-- define source_size_flag -->
+    <Parameter fit="false">
+        <name>source_size_flag</name>
+        <value>y</value>
+        <error> </error>
+        <lowlimit>-1e99</lowlimit>
+        <uplimit>1e99</uplimit>
+    </Parameter>
+
+
+    <!-- define source_size_lowlimit -->
+    <Parameter fit="false">
+        <name>source_size_lowlimit</name>
+        <value>0.3</value>
+        <error> </error>
+        <lowlimit>-1e99</lowlimit>
+        <uplimit>1e99</uplimit>
+    </Parameter>
+
+
+    <!-- define source_size_uplimit -->
+    <Parameter fit="false">
+        <name>source_size_uplimit</name>
+        <value>1.3</value>
+        <error> </error>
+        <lowlimit>-1e99</lowlimit>
+        <uplimit>1e99</uplimit>
+    </Parameter>
+
+
+    <!-- define source_size -->
+    <Parameter fit="true">
+        <name>source_size</name>
+        <value>0.7</value>
+        <error> </error>
+        <lowlimit>0.3</lowlimit>
+        <uplimit>1.3</uplimit>
+    </Parameter>
+
+
+    <!-- define T_rot_flag -->
+    <Parameter fit="false">
+        <name>T_rot_flag</name>
+        <value>y</value>
+        <error> </error>
+        <lowlimit>-1e99</lowlimit>
+        <uplimit>1e99</uplimit>
+    </Parameter>
+
+
+    <!-- define T_rot_lowlimit -->
+    <Parameter fit="false">
+        <name>T_rot_lowlimit</name>
+        <value>40.0</value>
+        <error> </error>
+        <lowlimit>-1e99</lowlimit>
+        <uplimit>1e99</uplimit>
+    </Parameter>
+
+
+    <!-- define T_rot_uplimit -->
+    <Parameter fit="false">
+        <name>T_rot_uplimit</name>
+        <value>350.0</value>
+        <error> </error>
+        <lowlimit>-1e99</lowlimit>
+        <uplimit>1e99</uplimit>
+    </Parameter>
+
+
+    <!-- define T_rot -->
+    <Parameter fit="true">
+        <name>T_rot</name>
+        <value>50.0</value>
+        <error> </error>
+        <lowlimit>40.0</lowlimit>
+        <uplimit>350.0</uplimit>
+    </Parameter>
+
+
+    <!-- define N_tot_flag -->
+    <Parameter fit="false">
+        <name>N_tot_flag</name>
+        <value>y</value>
+        <error> </error>
+        <lowlimit>-1e99</lowlimit>
+        <uplimit>1e99</uplimit>
+    </Parameter>
+
+
+    <!-- define N_tot_lowlimit -->
+    <Parameter fit="false">
+        <name>N_tot_lowlimit</name>
+        <value>13.698970004336019</value>
+        <error> </error>
+        <lowlimit>-1e99</lowlimit>
+        <uplimit>1e99</uplimit>
+    </Parameter>
+
+
+    <!-- define N_tot_uplimit -->
+    <Parameter fit="false">
+        <name>N_tot_uplimit</name>
+        <value>17.69897000433602</value>
+        <error> </error>
+        <lowlimit>-1e99</lowlimit>
+        <uplimit>1e99</uplimit>
+    </Parameter>
+
+
+    <!-- define N_tot -->
+    <Parameter fit="true">
+        <name>N_tot</name>
+        <value>15.0</value>
+        <error> </error>
+        <lowlimit>13.698970004336019</lowlimit>
+        <uplimit>17.69897000433602</uplimit>
+    </Parameter>
+
+
+    <!-- define V_width_Gauss_flag -->
+    <Parameter fit="false">
+        <name>V_width_Gauss_flag</name>
+        <value>y</value>
+        <error> </error>
+        <lowlimit>-1e99</lowlimit>
+        <uplimit>1e99</uplimit>
+    </Parameter>
+
+
+    <!-- define V_width_Gauss_lowlimit -->
+    <Parameter fit="false">
+        <name>V_width_Gauss_lowlimit</name>
+        <value>1</value>
+        <error> </error>
+        <lowlimit>-1e99</lowlimit>
+        <uplimit>1e99</uplimit>
+    </Parameter>
+
+
+    <!-- define V_width_Gauss_uplimit -->
+    <Parameter fit="false">
+        <name>V_width_Gauss_uplimit</name>
+        <value>9</value>
+        <error> </error>
+        <lowlimit>-1e99</lowlimit>
+        <uplimit>1e99</uplimit>
+    </Parameter>
+
+
+    <!-- define V_width_Gauss -->
+    <Parameter fit="true">
+        <name>V_width_Gauss</name>
+        <value>7</value>
+        <error> </error>
+        <lowlimit>1.0</lowlimit>
+        <uplimit>9.0</uplimit>
+    </Parameter>
+
+
+    <!-- define V_off_flag -->
+    <Parameter fit="false">
+        <name>V_off_flag</name>
+        <value>n</value>
+        <error> </error>
+        <lowlimit>-1e99</lowlimit>
+        <uplimit>1e99</uplimit>
+    </Parameter>
+
+
+    <!-- define V_off_lowlimit -->
+    <Parameter fit="false">
+        <name>V_off_lowlimit</name>
+        <value>0.0</value>
+        <error> </error>
+        <lowlimit>-1e99</lowlimit>
+        <uplimit>1e99</uplimit>
+    </Parameter>
+
+
+    <!-- define V_off_uplimit -->
+    <Parameter fit="false">
+        <name>V_off_uplimit</name>
+        <value>0.0</value>
+        <error> </error>
+        <lowlimit>-1e99</lowlimit>
+        <uplimit>1e99</uplimit>
+    </Parameter>
+
+
+    <!-- define V_off -->
+    <Parameter fit="false">
+        <name>V_off</name>
+        <value>0.0</value>
+        <error> </error>
+        <lowlimit>-1e99</lowlimit>
+        <uplimit>1e99</uplimit>
+    </Parameter>
+
+
+    <!-- define LayerDistance -->
+    <Parameter fit="false">
+        <name>LayerDistance</name>
+        <value>100</value>
+        <error> </error>
+        <lowlimit>-1e99</lowlimit>
+        <uplimit>1e99</uplimit>
+    </Parameter>
+
+
+    <!-- define keyword -->
+    <Parameter fit="false">
+        <name>keyword</name>
+        <value>Non-LTE</value>
+        <error> </error>
+        <lowlimit>-1e99</lowlimit>
+        <uplimit>1e99</uplimit>
+    </Parameter>
+
+
+    <!-- ============================================================================================================================================= -->
+    <!-- fourth input file -->
+
+
+    <!-- define number of molecules with collision rates -->
+    <Parameter fit="false">
+        <name>Geometry_MolColRates</name>
+        <value>1</value>
+        <error> </error>
+        <lowlimit>0</lowlimit>
+        <uplimit>1</uplimit>
+    </Parameter>
+
+
+    <!-- define number of molecules with collision rates -->
+    <Parameter fit="false">
+        <name>Number_MolColRates</name>
+        <value>1</value>
+        <error> </error>
+        <lowlimit>0</lowlimit>
+        <uplimit>1</uplimit>
+    </Parameter>
+
+
+    <!-- define current molecule -->
+    <Parameter fit="false">
+        <name>CollRatesMolecule</name>
+        <value>CH3CN;v=0;</value>
+        <error> </error>
+        <lowlimit>0</lowlimit>
+        <uplimit>1</uplimit>
+    </Parameter>
+
+
+    <!-- define path and name of file describing collision rates of current molecule -->
+    <Parameter fit="false">
+        <name>CollRatesFile</name>
+        <value>/home/xclassuser1/mphys_data/radex_temperature_gen/run/myXCLASSFit/job__27-04-2023__09-43-57__250872648/ch3cn.dat</value>
+        <error> </error>
+        <lowlimit>0</lowlimit>
+        <uplimit>1</uplimit>
+    </Parameter>
+
+
+    <!-- define number of collision partners -->
+    <Parameter fit="false">
+        <name>Number_CollPartners</name>
+        <value>1</value>
+        <error> </error>
+        <lowlimit>0</lowlimit>
+        <uplimit>1</uplimit>
+    </Parameter>
+
+
+    <!-- define name of collsion partner 1 -->
+    <Parameter fit="false">
+        <name>CollPartnerName</name>
+        <value>H2</value>
+        <error> </error>
+        <lowlimit>0</lowlimit>
+        <uplimit>1</uplimit>
+    </Parameter>
+
+
+    <!-- define density of collsion partner 1 -->
+    <Parameter fit="false">
+        <name>CollPartDensity</name>
+        <value>10000.0</value>
+        <error> </error>
+        <lowlimit>10000.0</lowlimit>
+        <uplimit>10000.0</uplimit>
+    </Parameter>
+
+
+    <!-- define lower limit of density of collsion partner 1 -->
+    <Parameter fit="false">
+        <name>CollPartDensityLow</name>
+        <value>10000.0</value>
+        <error> </error>
+        <lowlimit>0</lowlimit>
+        <uplimit>1</uplimit>
+    </Parameter>
+
+
+    <!-- define upper limit of density of collsion partner 1 -->
+    <Parameter fit="false">
+        <name>CollPartDensityUp</name>
+        <value>10000.0</value>
+        <error> </error>
+        <lowlimit>0</lowlimit>
+        <uplimit>1</uplimit>
+    </Parameter>
+
+
+    <!-- define distance for density of collsion partner 1 -->
+    <Parameter fit="false">
+        <name>CollPartDensityDist</name>
+        <value>100.0</value>
+        <error> </error>
+        <lowlimit>0</lowlimit>
+        <uplimit>1</uplimit>
+    </Parameter>
+
+
+    <!-- ********************************************************************************************************************************************* -->
+    <!-- third input file -->
+
+
+    <!-- define number of iso ratios -->
+    <Parameter fit="false">
+        <name>NumberOfISOLines</name>
+        <value>0</value>
+        <error> </error>
+        <lowlimit>0</lowlimit>
+        <uplimit>10000</uplimit>
+    </Parameter>
+
+
+    <!-- define number of global iso ratio definitions -->
+    <Parameter fit="false">
+        <name>NumberOfGlobalISORatios</name>
+        <value>0</value>
+        <error> </error>
+        <lowlimit>0</lowlimit>
+        <uplimit>10000</uplimit>
+    </Parameter>
+</ModelParameters>
