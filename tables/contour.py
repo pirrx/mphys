@@ -20,6 +20,7 @@ N2 = [1e14, 5e14, 1e15, 5e15, 1e16, 5e16, 1e17]
 T1 = [50, 100, 150, 200, 250, 300]
 T2 = [50, 100, 150, 200, 250, 300]
 
+
 single_n = [1.86e14, 3.96e14, 8.23e14, 1.01e16, 5.71e16, 4.15e14, 9.18e14, 4.93e15, 9.94e15, 9.96e16,
             7.84e15, 1.13e16, 3.60e16, 3.47e16, 6.18e16, 6.67e16]
 
@@ -388,6 +389,10 @@ fig = plt.figure(dpi=400)
 # fig, ax1 = plt.subplots()
 # ax2 = ax1.twinx
 
+
+print(X_T)
+print(Y_T)
+print(Z)
 
 plt.title(r'$N_{2}$ fit')
 plt.xlabel(r'First temperature component $T_1$ [K]')

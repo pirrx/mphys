@@ -7,7 +7,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 import scipy.constants as sc
 
+#its not residuals but diff between the graphs but go off
+
 FILENAMES = ["e14.csv", "e15.csv", "e16.csv", "e17.csv", "low.csv", "high.csv"]
+# FILENAMES = ["radex_e14.csv", "radex_e15.csv", "radex_e16.csv", "radex_e17.csv"]
+
 
 def file_check(filename):
     """
@@ -91,7 +95,7 @@ index_changed = 3 #whats gonna be on the x axis
 
 
 
-#TRY
+#getting all the data sets
 RESIDUALS_e14, GENERATED_e14, FITTED_e14, CHANGED_e14, UPPER_e14, LOWER_e14 = data_array(FILENAMES[0], index_generated, index_fitted, index_changed)
 RESIDUALS_e14_N1, GENERATED_e14_N1, FITTED_e14_N1, CHANGED_e14_N1, UPPER_e14_N1, LOWER_e14_N1 = data_array(FILENAMES[0], index_generated_n1, index_fitted_n1, index_changed)
 print(RESIDUALS_e14)
@@ -108,10 +112,8 @@ RESIDUALS_e16_N1, GENERATED_e16_N1, FITTED_e16_N1, CHANGED_e16_N1, UPPER_e16_N1,
 RESIDUALS_e17, GENERATED_e17, FITTED_e17, CHANGED_e17, UPPER_e17, LOWER_e17 = data_array(FILENAMES[3], index_generated, index_fitted, index_changed)
 RESIDUALS_e17_N1, GENERATED_e17_N1, FITTED_e17_N1, CHANGED_e17_N1, UPPER_e17_N1, LOWER_e17_N1 = data_array(FILENAMES[3], index_generated_n1, index_fitted_n1, index_changed)
 
-
+#temp
 RESIDUALS_low, GENERATED_low, FITTED_low, CHANGED_low, UPPER_low, LOWER_low = data_array(FILENAMES[4], index_generated, index_fitted, index_changed)
-
-
 RESIDUALS_high, GENERATED_high, FITTED_high, CHANGED_high, UPPER_high, LOWER_high = data_array(FILENAMES[5], index_generated, index_fitted, index_changed)
 
 

@@ -378,9 +378,71 @@ if __name__ == '__main__':
     freqs = model.frequencies
     
     
+    #------------ ADDING NOISE ------------#
+    #--------------------------------------#
+    
+    
+    SNR = 20
+    signal = intensities[0]
+    print(max(signal))
+    power = signal**2
+    print(max(power))
+    rms_sq = max(power)/SNR
+    print(np.sqrt(rms_sq))
+    var = rms_sq
+    std = np.sqrt(var)
+    
+    noise_array = np.random.normal(0, std, len(signal))
+    # print(noise_array.max())
+    signal = signal + noise_array
+    
+    x = np.sqrt(np.mean(noise_array**2))
+    print(x**2*SNR)
+    
+    print(np.sqrt(np.mean(noise_array**2)))
+        
+    
+    # print(max(signal))
+    # # power = signal**2
+    # # mean_power = np.mean(power)
+    # # print(np.sqrt(mean_power))
+    # # noise_power_limit = mean_power/SNR
+    # power = signal.max()**2
+    # #print(np.sqrt(power))
+    # noise_power_limit = power/SNR
+    # print(np.sqrt(noise_power_limit))
+    
+    # noise_array = np.random.normal(0, np.sqrt(noise_power_limit), len(signal))
+    # # noise_array = np.random.normal(0, np.sqrt(noise_power_limit)/3, len(signal))
+    # signal = signal + noise_array
+    
+    
+    intensities[0] = signal
+
+    
+
+    
+    file = open("intensity_noise_try.dat", "w")
+    data = np.column_stack([signal, freqs])
+    datafile_path = "/your/data/output/directory/datafile.txt"
+    np.savetxt(file, data)
+    file.close()
+    
+    #--------------------------------------#
+    
+    # file = open("intensity_noise_try.dat", "r")
+    DATA = np.genfromtxt("intensity_noise_try.dat", delimiter=' ',
+                     comments='%')
+    print(DATA)
+    
+    signal = DATA[:, 0]
+    freqs = DATA[:, 1]
+    
+    
     #PLOT both components
     plt.figure()
-    plt.plot(freqs, intensities[0], linewidth = 2)
+    # plt.plot(freqs, intensities[0], linewidth = 2)
+    plt.plot(freqs, signal, linewidth = 1)
     plt.xticks(fontsize= 10)
     plt.yticks(fontsize= 10)
     #plt.grid()

@@ -27,9 +27,8 @@ labels = [r'$10^{14}, 10^{14}$',
           r'$10^{14}, 10^{15}$',
           r'$10^{14}, 10^{16}$',
           r'$10^{14}, 10^{17}$',
-          
-          
-         r'$10^{15}, 5\times10^{14}$',
+         
+          r'$10^{15}, 5\times10^{14}$',
           r'$10^{15}, 10^{15}$',
           r'$10^{15}, 5\times10^{15}$',
           r'$10^{15}, 10^{16}$',
@@ -43,6 +42,27 @@ labels = [r'$10^{14}, 10^{14}$',
           r'$10^{17}, 10^{17}$',
           r'$10^{17}, 5\times10^{17}$',
           ]
+
+# labels = [r'$10^{14}, 10^{14}$',
+#           r'$10^{14}, 10^{15}$',
+#           r'$10^{14}, 10^{16}$',
+#           r'$10^{14}, 10^{17}$',
+          
+#           r'$10^{15}, 10^{14}$',
+#           r'$10^{15}, 10^{15}$',
+#           r'$10^{15}, 10^{16}$',
+#           r'$10^{15}, 10^{17}$',
+
+#           r'$10^{16}, 10^{14}$',
+#           r'$10^{16}, 10^{15}$',
+#           r'$10^{16}, 10^{16}$',
+#           r'$10^{16}, 10^{17}$',
+          
+#           r'$10^{17}, 10^{14}$',
+#           r'$10^{17}, 10^{15}$',
+#           r'$10^{17}, 10^{16}$',
+#           r'$10^{17}, 10^{17}$',
+#           ]
 
 
 
@@ -81,7 +101,8 @@ def get_filenames(directory_path):
     return filenames
 
 def get_comp_nr(filenames):
-    "separates one and two comp filenames"
+    """ separates one and two comp filenames - files need to contain either 'one' 
+    or 'two' in their name """
     
     two_comp_residuals = []
     one_comp_residuals = []
@@ -168,6 +189,8 @@ def get_data_all_files(filenames, noise_file):
     plt.scatter(x, percentage_over)
         
         # return
+
+
 
 get_data_all_files(TWO_COMP, NOISE_N_FILENAME)
 
