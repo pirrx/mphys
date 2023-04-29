@@ -247,3 +247,13 @@ get_data_all_files(RESIDUALS_PATH_NONLTE, 'non_lte_1')
 
 
 
+    
+
+# # filename = 'Result subtract e14 e14 rpp50 two.fus'
+# # file_path = RESIDUALS_PATH + filename
+# # print(file_path)
+# # data = np.genfromtxt(file_path, dtype='float', delimiter='\t', skip_header=3)
+# # print(data)
+# # print(len(data))
+
+# # could add specific noise value into the array of each spectra dataset
