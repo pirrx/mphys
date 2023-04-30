@@ -1,7 +1,0 @@
-     1                                                                                  % Geometry (=1: sphere, =2: LVG, =3: slab) 
-     1                                                                                  % number of molecules 
- CH3CN;v=0;                                                                             % molecule 
- /home/xclassuser1/mphys_data/radex_temperature_gen/run/myXCLASSFit/job__26-04-2023__14-26-55__025096552/ch3cn.dat               % path and name of file containing collision rates 
-     1                                                                                  % number of collision partners 
- H2                                                                                     % ith collision partner 
-     1.00000E+04              1.000E+04              1.000E+04            1.000000000000000E+02                          % density , lower, and upper limit of ith collision partner 
